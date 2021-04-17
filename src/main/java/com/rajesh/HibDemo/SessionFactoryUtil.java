@@ -3,8 +3,8 @@ package com.rajesh.HibDemo;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class SessionFsctoryaUtil {
-	private SessionFsctoryaUtil() {}
+public class SessionFactoryUtil {
+	private SessionFactoryUtil() {}
 	
 	public static SessionFactory sf = null;
 	

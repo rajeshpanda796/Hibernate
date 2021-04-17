@@ -3,14 +3,14 @@ package com.rajesh.HibDemo.DTO;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name="Laptop")
 public class Laptop {
 	@Id
-	@GeneratedValue(generator = "increse")
-	@GenericGenerator(name = "increse", strategy = "increment")
 	private int lid;
 	private String lname;
 	public int getLid() {
