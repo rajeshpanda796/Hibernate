@@ -1,16 +1,19 @@
 package com.rajesh.HibDemo.DTO;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+//import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
 
 @Entity
 @Table(name = "studentMark")
@@ -25,17 +28,26 @@ public class Student implements Serializable {
 	@Column(name = "name")
 	private StudentName name;
 	private Double mark;
-	@OneToOne
-	private Laptop laptop;
-
-	public Laptop getLaptop() {
+	// @OneToOne(cascade = CascadeType.ALL)
+	// @PrimaryKeyJoinColumn
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "l_id")
+	// private Laptop laptop;
+	private List<Laptop> laptop;
+	/*
+	 * public Laptop getLaptop() { return laptop; }
+	 * 
+	 * public void setLaptop(Laptop laptop) { this.laptop = laptop; }
+	 */
+	
+	public List<Laptop> getLaptop() {
 		return laptop;
 	}
 
-	public void setLaptop(Laptop laptop) {
+	public void setLaptop(List<Laptop> laptop) {
 		this.laptop = laptop;
 	}
-
+	
 	public int getRollno() {
 		return rollno;
 	}
@@ -43,7 +55,6 @@ public class Student implements Serializable {
 	public void setRollno(int rollno) {
 		this.rollno = rollno;
 	}
-
 
 	public StudentName getName() {
 		return name;
@@ -65,5 +76,6 @@ public class Student implements Serializable {
 	public String toString() {
 		return "Student [rollno=" + rollno + ", name=" + name + ", mark=" + mark + ", laptop=" + laptop + "]";
 	}
+
 
 }
