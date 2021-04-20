@@ -28,17 +28,18 @@ public class Student implements Serializable {
 	@Column(name = "name")
 	private StudentName name;
 	private Double mark;
-	// @OneToOne(cascade = CascadeType.ALL)
-	// @PrimaryKeyJoinColumn
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "l_id")
-	// private Laptop laptop;
-	private List<Laptop> laptop;
 	/*
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	 private Laptop laptop;
+
 	 * public Laptop getLaptop() { return laptop; }
 	 * 
 	 * public void setLaptop(Laptop laptop) { this.laptop = laptop; }
 	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "l_id")
+	private List<Laptop> laptop;
 	
 	public List<Laptop> getLaptop() {
 		return laptop;
