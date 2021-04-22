@@ -1,7 +1,9 @@
 package com.rajesh.HibDemo;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 public class SessionFactoryUtil {
 	private SessionFactoryUtil() {}
@@ -11,7 +13,9 @@ public class SessionFactoryUtil {
 	public static SessionFactory getSessionFactory() {
 		if (sf == null) {
 			Configuration cfg = new Configuration().configure();
-			sf = cfg.buildSessionFactory();
+			StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
+			ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
+			sf = cfg.buildSessionFactory(serviceRegistry);
 		}
 		return sf;
 	}
